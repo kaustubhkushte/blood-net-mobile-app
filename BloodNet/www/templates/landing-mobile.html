@@ -1,6 +1,94 @@
 <ion-view view-title="Blood Net Landing">
   <ion-nav-title app-header></ion-nav-title>
-
   <ion-content>
+    <form novalidate name="registrationForm">
+      <div class="list">
+        <div class="item item-input item-floating-label">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="Enter First Name" ng-model="register.fName" required>
+        </div>
+        <div class="item item-input item-floating-label">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="Enter Last Name" ng-model="register.lName" required>
+        </div>
+        <!-- Date of birth -->
+        <div class="item item-input">
+          <input type="text" placeholder="D.O.B.(yyyy/dd/mm)" readonly="true" ng-model="register.dob" >
+          <button class="button button-balanced" ng-click="showDOBPicker()">
+            <i class="icon ion-ios-calendar-outline"></i>
+          </button>
+        </div>
+        <!--  Email Address-->
+        <div class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="Enter Email Address" ng-model="register.email" required>
+        </div>
+        <!--  Mobile-->
+        <div class="item item-input item-floating-label">
+          <span class="input-label">Mobile Number</span>
+          <input type="text" placeholder="Enter Mobile Number" ng-model="register.mobileNumber" required numeric-only>
+        </div>
+        <!--  Gender-->
+        <div class="item">
+          <span class="input-label">Gender</span>
+          <ion-list>
+            <ion-radio ng-model="register.gender" ng-value="'0'">Male</ion-radio>
+            <ion-radio ng-model="register.gender" ng-value="'1'">Female</ion-radio>
+          </ion-list>
+        </div>
+        <!--  Blood Group-->
+        <div class="item item-select">
+          <span class="input-label">Blood Group</span>
+          <select ng-model="register.bloodGroup">
+            <option value="">Select Blood Group</option>
+            <option ng-repeat="bldGrp in bloodGroupList track by $index" value="{{bldGrp.value}}">
+              {{bldGrp.title}}
+            </option>
+          </select>
+        </div>
+        <!-- Last Blood Donted -->
+        <div class="item item-divider">
+          Last blood donation details
+        </div>
+        <!-- Last Whole Blood Donted date -->
+        <div class="item item-input">
+          <input type="text" placeholder="Whole Blood Donation Date (yyyy/dd/mm)" readonly="true" ng-model="register.wholeBloodDate" >
+          <button class="button button-balanced" ng-click="showDOBPicker()">
+            <i class="icon ion-ios-calendar-outline"></i>
+          </button>
+        </div>
+        <!-- Last Platelates donation date -->
+        <div class="item item-input">
+          <input type="text" placeholder="Platelates Donation Date (yyyy/dd/mm)" readonly="true" ng-model="register.platelatesDate" >
+          <button class="button button-balanced" ng-click="showDOBPicker()">
+            <i class="icon ion-ios-calendar-outline"></i>
+          </button>
+        </div>
+        <!-- Last Plasma donation date -->
+        <div class="item item-input">
+          <input type="text" placeholder="Platelates Donation Date (yyyy/dd/mm)" readonly="true" ng-model="register.plasmaDate" >
+          <button class="button button-balanced" ng-click="showDOBPicker()">
+            <i class="icon ion-ios-calendar-outline"></i>
+          </button>
+        </div>
+        <!-- Location -->
+        <div class="item item-divider">
+          Preffered Location
+        </div>
+        <div class="item item-text-wrap">
+          This will help us to reach you when hospitals near your preffered location are in need of blood donation.
+        </div>
+        <div class="item item-input">
+          <input type="text" placeholder="Enter preferred location" readonly="true" ng-model="register.preferredLocationName" >
+          <button class="button button-balanced" ng-click="showLocationSearchModal()">
+            <i class="icon ion-search"></i>
+          </button>
+        </div>
+      </div>
+      <pre>{{register | json}}</pre>
+      <div class="text-center">
+        <button class="button button-positive" ng-disabled="registrationForm.$invalid" ng-click="submitDetails()"> Submit</button>
+      </div>
+    </form>
   </ionic-content>
 </ion-view>
