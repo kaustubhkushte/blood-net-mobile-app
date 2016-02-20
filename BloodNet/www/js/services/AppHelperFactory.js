@@ -12,7 +12,8 @@ app.factory('AppHelperFactory',
 '$q',
 '$ionicLoading',
 '$cordovaClipboard',
-function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$state,constants,$cordovaInAppBrowser,$cordovaDevice,$q,$ionicLoading,$cordovaClipboard){
+'$ionicNavBarDelegate',
+function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$state,constants,$cordovaInAppBrowser,$cordovaDevice,$q,$ionicLoading,$cordovaClipboard,$ionicNavBarDelegate){
 
   var _stringify = function(jsonObject)
   {
@@ -141,6 +142,10 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
     });
   }
 
+  var _goBack = function()
+  {
+    $ionicNavBarDelegate.back();
+  }
   return {
     showError: showError,
     isOnline : isOnline,
@@ -158,6 +163,7 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
     getSuccessResponse:_prepareSuccess,
     getTimeStamp: _getTimeStamp,
     stringify:_stringify,
-    copyToClipBoard:_copyToClipBoard
+    copyToClipBoard:_copyToClipBoard,
+    goBack:_goBack
   }
 }]);

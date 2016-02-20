@@ -81,6 +81,11 @@ function($ionicConfigProvider,$httpProvider,$stateProvider,$urlRouterProvider) {
     templateUrl:'templates/notification-request.html',
     controller:'DonationRequestController'
   })
+  .state('donationPass',{
+    url:'/donationPass/?:dontationMessage&:hospitalLat&:hospitalLong&:hospitalName',
+    templateUrl:'templates/request-accepted.html',
+    controller:'DonationPassController'
+  })
   // .state('app', {
   //   url: '/app',
   //   abstract: true,
