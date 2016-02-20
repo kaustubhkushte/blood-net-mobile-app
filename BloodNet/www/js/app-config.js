@@ -76,6 +76,11 @@ function($ionicConfigProvider,$httpProvider,$stateProvider,$urlRouterProvider) {
     templateUrl:'templates/landing-mobile.html',
     controller:'LandingController'
   })
+  .state('donationRequest',{
+    url:'/donationRequest',
+    templateUrl:'templates/notification-request.html',
+    controller:'DonationRequestController'
+  })
   // .state('app', {
   //   url: '/app',
   //   abstract: true,

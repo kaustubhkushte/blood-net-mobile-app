@@ -4,6 +4,9 @@
 .text-center{
   text-align: center;
 }
+.text-right{
+  text-align: right;
+}
 .red-header{
   background-color: #FF0000 !important;
 }

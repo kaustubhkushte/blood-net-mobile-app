@@ -16,7 +16,8 @@ app.run(function($ionicPlatform,$cordovaPush,$rootScope,AppHelperFactory,AppCons
         var push = new Ionic.Push({
         "debug": false,
         "onNotification": function(notification) {
-          alert('Received push notification!');          
+          AppHelperFactory.debug(notification);
+          //TODO: Navigate To Notification Screen
         },
         "pluginConfig": {
           "android": {
@@ -29,7 +30,7 @@ app.run(function($ionicPlatform,$cordovaPush,$rootScope,AppHelperFactory,AppCons
         AppHelperFactory.copyToClipBoard(token.token);
       });
 
-      // Register for notification
+      // // Register for notification
       // $cordovaPush.register(androidConfig).then(function(result) {
       //   // Success
       // }, function(err) {
@@ -51,8 +52,11 @@ app.run(function($ionicPlatform,$cordovaPush,$rootScope,AppHelperFactory,AppCons
             break;
 
           case 'message':
+          case 'notification':
+          case 'startup':
             // this is the actual push notification. its format depends on the data model from the push server
-            alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+            AppHelperFactory.debug(AppHelperFactory.stringify(notification));
+            alert('message = ' + AppHelperFactory.stringify(notification) + ' msgCount = ' + notification.msgcnt);
             break;
 
           case 'error':

@@ -1,0 +1,32 @@
+<ion-view view-title="Blood Net Landing">
+  <ion-nav-title app-header></ion-nav-title>
+  <ion-content>
+    <div class="card">
+  <div class="item item-divider">
+    Hospital Name
+  </div>
+  <div class="item item-text-wrap">
+    {{request.hospitalName}}
+  </div>
+  <div class="item item-divider">
+    Request
+  </div>
+  <div class="item item-text-wrap">
+    {{request.dontationMessage}}
+  </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="button button-positive">
+        ACCEPT
+      </button>
+    </div>
+    <div class="col text-right">
+      <button class="button button-assertive">
+        CANCEL
+      </button>
+    </div>
+
+  </div>
+  </ionic-content>
+</ion-view>
