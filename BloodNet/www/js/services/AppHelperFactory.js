@@ -11,7 +11,8 @@ app.factory('AppHelperFactory',
 '$cordovaDevice',
 '$q',
 '$ionicLoading',
-function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$state,constants,$cordovaInAppBrowser,$cordovaDevice,$q,$ionicLoading){
+'$cordovaClipboard',
+function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$state,constants,$cordovaInAppBrowser,$cordovaDevice,$q,$ionicLoading,$cordovaClipboard){
 
   var _stringify = function(jsonObject)
   {
@@ -59,39 +60,16 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
 
   var storeValue = function(key,value)
   {
-    var deferred = $q.defer();
-    $localForage.setItem(key,value).then(function() {
-      deferred.resolve(constants.statusSuccess);
-    });
-    return deferred.promise;
+    localStorage.setItem(key,value);
   }
 
-  var _storeSecureValue = function(key,value)
-  {
-    var deferred = $q.defer();
-    $localForage.setItem(key,value).then(function() {
-      deferred.resolve(constants.statusSuccess);
-    });
-    return deferred.promise;
-  }
+
 
   var getValue = function(key)
   {
-    var deferred = $q.defer();
-    $localForage.getItem(key).then(function(value){
-      deferred.resolve(value);
-    });
-    return deferred.promise;
+    return localStorage.getItem(key);
   }
 
-  var _getSecureValue = function(key)
-  {
-    var deferred = $q.defer();
-    $localForage.getItem(key).then(function(value){
-      deferred.resolve(value);
-    });
-    return deferred.promise;
-  }
 
   var goTo = function(path,params)
   {
@@ -104,27 +82,6 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
 
   }
 
-  var isCountrySelected = function(){
-
-    var deferred = $q.defer();
-
-    getValue(constants.usersCountry).then(function(value){
-      var countryCode = value;
-      if (countryCode == undefined) {
-        deferred.resolve(false);
-      }
-      else if(countryCode != '')
-      {
-        deferred.resolve(true);
-      }
-      else {
-        deferred.resolve(false);
-      }
-    });
-
-    return deferred.promise;
-
-  };
 
 
   var openURLInAppBrowser = function(url)
@@ -137,48 +94,6 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
       };
 
     return $cordovaInAppBrowser.open(url, '_blank', options);
-  }
-
-  var didUserAcceptedTerms = function() {
-    var deferred = $q.defer();
-    getValue(constants.areTermsAccepted).then(function(value){
-      var termsFlag = value;
-      if (termsFlag == undefined) {
-        deferred.resolve(false);
-      }
-      else if(termsFlag == true)
-      {
-        deferred.resolve(true);
-      }
-      else
-      {
-        deferred.resolve(false);
-      }
-    });
-    return deferred.promise;
-  }
-
-
-
-  var checkLogin = function() {
-    var deferred = $q.defer();
-
-    getValue(constants.userLoginStatus).then(function(value){
-      var loginFlag = value;
-
-      if (loginFlag == undefined) {
-        deferred.resolve(false);
-      }
-      else if(loginFlag == true)
-      {
-        deferred.resolve(true);
-      }
-      else {
-        deferred.resolve(false);
-      }
-    });
-
-    return deferred.promise;
   }
 
 
@@ -199,24 +114,6 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
     params['deviceName'] = ionic.Platform.is('browser') ? 'browser': $cordovaDevice.getModel();
   }
 
-
-  var _setupDB = function()
-  {
-    db.transaction(function(tx){
-      tx.executeSql('CREATE TABLE IF NOT EXISTS CountryList ( countryCode integer, countryName text, locale text )');
-
-    },function(e){
-      _error(e);
-    },function(){
-
-    })
-  }
-
-  var _handleDBError = function(errMsg)
-  {
-    _error(errMsg);
-  }
-
   var _prepareError = function(errMsg)
   {
     return {message:errMsg,status:constants.statusFailure};
@@ -231,6 +128,19 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
   {
     return new Date().getTime();
   }
+
+  var _copyToClipBoard = function(textToCopy)
+  {
+    $cordovaClipboard
+    .copy(textToCopy)
+    .then(function () {
+      // success
+    }, function () {
+      // error
+      alert('Failed to copy');
+    });
+  }
+
   return {
     showError: showError,
     isOnline : isOnline,
@@ -239,21 +149,15 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
     storeValue:storeValue,
     getValue:getValue,
     goTo:goTo,
-    isCountrySelected:isCountrySelected,
     openURLInAppBrowser:openURLInAppBrowser,
-    checkLogin:checkLogin,
-    didUserAcceptedTerms:didUserAcceptedTerms,
     error:_error,
     debug:debug,
     errDataConnectionUnavailable:errDataConnectionUnavailable,
     addDeviceDetails:addDeviceDetails,
-    setupDB:_setupDB,
-    handleDBError:_handleDBError,
     getErrorResponse:_prepareError,
     getSuccessResponse:_prepareSuccess,
-    getSecureValue : _getSecureValue,
-    storeSecureValue : _storeSecureValue,
     getTimeStamp: _getTimeStamp,
-    stringify:_stringify
+    stringify:_stringify,
+    copyToClipBoard:_copyToClipBoard
   }
 }]);

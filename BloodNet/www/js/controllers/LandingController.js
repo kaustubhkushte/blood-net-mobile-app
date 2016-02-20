@@ -10,17 +10,19 @@ function($scope,helper,constants,datePicker,$ionicModal){
   $scope.mobileNumberRegEx="/^[0-9]{10,10}$/;"
 
   $scope.register = {};
+  $scope.register.dob = '';
   $scope.register.wholeBloodDate = '';
   $scope.register.platelatesDate = '';
   $scope.register.plasmaDate = '';
   $scope.register.preferredLocationName = '';
   $scope.register.preferredLocationLat = 77.33;
   $scope.register.preferredLocationLong = 28.22;
+  $scope.register.pushToken = '';
 
   //TODO : Move blood list to a data folder
   $scope.locations = [
       {"title":"BTM","lat":12,"long":232},
-      {"title":"BTM","lat":12,"long":232}
+      {"title":"JP Nagar","lat":12,"long":232}
   ];
   $scope.bloodGroupList = [
 {"title":"AB+","value":1},
@@ -62,7 +64,7 @@ function($scope,helper,constants,datePicker,$ionicModal){
 
   $scope.submitDetails = function()
   {
-    alert(1);
+    alert(helper.getValue(constants.notificationToken));
   }
 
 
@@ -83,7 +85,7 @@ function($scope,helper,constants,datePicker,$ionicModal){
     $scope.closeModal();
   }
 
-
+  //Select DOB
   $scope.showDOBPicker = function()
   {
     var datePickerOptions = {
@@ -102,7 +104,53 @@ function($scope,helper,constants,datePicker,$ionicModal){
           var month = date.getMonth();
           var day = date.getDay();
           var year = date.getFullYear();
-          $scope.register.dob = year +'/'+day+'/'+month;
+          var dateStr = year +'/'+day+'/'+month;
+
+          $scope.register.dob = dateStr;
+        }
+    });
+  }
+
+
+  //Select LastDonationDate
+  $scope.showLastDonationDatePicker = function(dontationType)
+  {
+    var datePickerOptions = {
+      date: new Date(),
+      mode: 'date', // or 'time'
+      minDate: new Date('1945','01','01'),
+      allowOldDates: true,
+      allowFutureDates: false,
+      doneButtonLabel: 'DONE',
+      doneButtonColor: '#000000',
+      cancelButtonLabel: 'CANCEL',
+      cancelButtonColor: '#000000'
+    };
+    datePicker.show(datePickerOptions).then(function(date){
+        if (date !== undefined) {
+          var month = date.getMonth();
+          var day = date.getDay();
+          var year = date.getFullYear();
+          var dateStr =dateStr;
+          switch (dontationType) {
+            case 0:
+            {
+              $scope.register.wholeBloodDate = dateStr;
+            }
+            break;
+            case 1:
+            {
+              $scope.register.platelatesDate = dateStr;
+            }
+            break;
+            case 2:
+            {
+              $scope.register.plasmaDate = dateStr;
+            }
+            break;
+            default:
+
+          }
         }
     });
   }

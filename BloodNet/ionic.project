@@ -1,6 +1,6 @@
 {
   "name": "BloodNet",
-  "app_id": "",
+  "app_id": "2cc52b27",
   "gulpStartupTasks": [
     "sass",
     "watch"

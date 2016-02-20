@@ -53,21 +53,21 @@
         <!-- Last Whole Blood Donted date -->
         <div class="item item-input">
           <input type="text" placeholder="Whole Blood Donation Date (yyyy/dd/mm)" readonly="true" ng-model="register.wholeBloodDate" >
-          <button class="button button-balanced" ng-click="showDOBPicker()">
+          <button class="button button-balanced" ng-click="showLastDonationDatePicker(0)">
             <i class="icon ion-ios-calendar-outline"></i>
           </button>
         </div>
         <!-- Last Platelates donation date -->
         <div class="item item-input">
           <input type="text" placeholder="Platelates Donation Date (yyyy/dd/mm)" readonly="true" ng-model="register.platelatesDate" >
-          <button class="button button-balanced" ng-click="showDOBPicker()">
+          <button class="button button-balanced" ng-click="showLastDonationDatePicker(1)">
             <i class="icon ion-ios-calendar-outline"></i>
           </button>
         </div>
         <!-- Last Plasma donation date -->
         <div class="item item-input">
           <input type="text" placeholder="Platelates Donation Date (yyyy/dd/mm)" readonly="true" ng-model="register.plasmaDate" >
-          <button class="button button-balanced" ng-click="showDOBPicker()">
+          <button class="button button-balanced" ng-click="showLastDonationDatePicker(2)">
             <i class="icon ion-ios-calendar-outline"></i>
           </button>
         </div>

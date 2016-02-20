@@ -70,7 +70,7 @@ function($ionicConfigProvider,$httpProvider,$stateProvider,$urlRouterProvider) {
 
   //App States
   //TODO : Different landing for Web App
-  
+
   $stateProvider.state('main',{
     url:'/',
     templateUrl:'templates/landing-mobile.html',
