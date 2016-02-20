@@ -13,30 +13,29 @@ app.run(function($ionicPlatform,$cordovaPush,$rootScope,AppHelperFactory,AppCons
 
   $ionicPlatform.ready(function() {
     if (window.cordova) {
-      //   var push = new Ionic.Push({
-      //   "debug": false,
-      //   "onNotification": function(notification) {
-      //     alert('Received push notification!');
-      //     alert(notification);
-      //   },
-      //   "pluginConfig": {
-      //     "android": {
-      //       "iconColor": "#0000FF"
-      //     }
-      //   }
-      // });
-      // push.register(function(token) {
-      //   //alert(token.token);
-      //   AppHelperFactory.copyToClipBoard(token.token);
-      // });
-      
-      // Register for notification
-      $cordovaPush.register(androidConfig).then(function(result) {
-        // Success
-      }, function(err) {
-        // Error
-        alert(err);
+        var push = new Ionic.Push({
+        "debug": false,
+        "onNotification": function(notification) {
+          alert('Received push notification!');          
+        },
+        "pluginConfig": {
+          "android": {
+            "iconColor": "#0000FF"
+          }
+        }
       });
+      push.register(function(token) {
+        //alert(token.token);
+        AppHelperFactory.copyToClipBoard(token.token);
+      });
+
+      // Register for notification
+      // $cordovaPush.register(androidConfig).then(function(result) {
+      //   // Success
+      // }, function(err) {
+      //   // Error
+      //   alert(err);
+      // });
 
 
       $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
