@@ -77,7 +77,7 @@ function($ionicConfigProvider,$httpProvider,$stateProvider,$urlRouterProvider) {
     controller:'LandingController'
   })
   .state('donationRequest',{
-    url:'/donationRequest',
+    url:'/donationRequest/?:dontationMessage&:hospitalLat&:hospitalLong&:hospitalName',
     templateUrl:'templates/notification-request.html',
     controller:'DonationRequestController'
   })

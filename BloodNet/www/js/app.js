@@ -17,7 +17,13 @@ app.run(function($ionicPlatform,$cordovaPush,$rootScope,AppHelperFactory,AppCons
         "debug": false,
         "onNotification": function(notification) {
           AppHelperFactory.debug(notification);
-          //TODO: Navigate To Notification Screen
+          var pl = notification._payload;
+
+          var dontationMessage = pl.dontationMessage;
+          var hospitalLat = pl.hospitalLat;
+          var hospitalLong = pl.hospitalLong;
+          var hospitalName = pl.hospitalName;
+          AppHelperFactory.goTo('donationRequest',{dontationMessage:dontationMessage,hospitalLat:hospitalLat,hospitalLong:hospitalLong,hospitalName:hospitalName});
         },
         "pluginConfig": {
           "android": {
