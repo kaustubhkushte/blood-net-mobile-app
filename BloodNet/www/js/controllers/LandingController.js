@@ -17,9 +17,7 @@ function($scope,helper,constants,datePicker,$ionicModal,lf,$cordovaSocialSharing
   helper.log('Landing Loaded');
 
   $scope.mobileNumberRegEx="/^[0-9]{10,10}$/;"
-$scope.share = function () {
-    $cordovaSocialSharing.share('This is my message', 'Subject string', null, 'http://www.mylink.com');
-}
+
   $scope.register = {};
   $scope.register.fName = 'Kaustubh';
   $scope.register.lName = 'Kushte';

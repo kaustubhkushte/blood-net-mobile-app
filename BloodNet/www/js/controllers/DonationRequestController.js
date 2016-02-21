@@ -4,13 +4,18 @@ controllers.controller('DonationRequestController',['$scope',
 '$cordovaDatePicker',
 '$ionicModal',
 '$stateParams',
-function($scope,helper,constants,datePicker,$ionicModal,$stateParams){
+'$cordovaSocialSharing',
+function($scope,helper,constants,datePicker,$ionicModal,$stateParams,$cordovaSocialSharing){
 
   helper.log('Donation Request Loaded');
   helper.log($stateParams);
   $scope.request = {};
   $scope.request.dontationMessage = $stateParams.dontationMessage;
   $scope.request.hospitalName = $stateParams.hospitalName;
+
+  $scope.share = function () {
+      $cordovaSocialSharing.share($scope.request.dontationMessage, 'Blood Donation Request', null, '');
+  }
 
   $scope.acceptRequest = function()
   {
