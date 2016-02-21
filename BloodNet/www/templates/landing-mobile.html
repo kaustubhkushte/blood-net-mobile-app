@@ -1,6 +1,6 @@
 <ion-view view-title="Blood Net Landing">
   <ion-nav-title app-header></ion-nav-title>
-  <ion-content>
+  <ion-content class="padding">
     <form novalidate name="registrationForm">
       <div class="list">
         <div class="item item-input item-floating-label">
@@ -89,6 +89,12 @@
       <div class="text-center">
         <button class="button button-positive" ng-disabled="registrationForm.$invalid" ng-click="submitDetails()"> Submit</button>
       </div>
+        <div class="col text-right">
+      <button class="button button-assertive" ng-click="share()">
+        Share on Twitter
+      </button>
+    </div>
+
     </form>
   </ionic-content>
 </ion-view>
