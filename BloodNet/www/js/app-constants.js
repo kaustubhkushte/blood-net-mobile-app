@@ -12,6 +12,7 @@ app.constant("AppConstants", {
         doNotShowLoaderScreen : false,
         notificationToken : 'AndroidPushToken',
         emailToken:'email' ,
+        isUserRegistered:'UserRegistrationStatus',
         apiUrl:{
           'users':'http://10.14.120.235:81/app_dev.php/api/v1/users/'
         }

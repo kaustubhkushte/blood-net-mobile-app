@@ -6,6 +6,13 @@ controllers.controller('LandingController',['$scope',
 'LandingFactory',
 function($scope,helper,constants,datePicker,$ionicModal,lf){
 
+  $scope.$on('$ionicView.beforeEnter', function(){
+    if (helper.getValue(constants.isUserRegistered)==='yes') {
+      helper.disableBackNavigation();
+      helper.goTo('userProfile');
+    }
+  });
+
   helper.log('Landing Loaded');
 
   $scope.mobileNumberRegEx="/^[0-9]{10,10}$/;"
@@ -78,7 +85,11 @@ function($scope,helper,constants,datePicker,$ionicModal,lf){
     helper.storeValue(constants.emailToken,$scope.register.email);
     $scope.register.pushToken =  helper.getValue(constants.notificationToken);
     lf.sendRegistrationDetails($scope.register).then(function(result){
-      alert(result);
+      //Store User Session
+      helper.storeValue(constants.isUserRegistered,true);
+      //Move to User's Landing Page
+      helper.disableBackNavigation();
+      helper.goTo('userProfile');
     });
 
   }

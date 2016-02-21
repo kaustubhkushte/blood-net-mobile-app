@@ -86,6 +86,10 @@ function($ionicConfigProvider,$httpProvider,$stateProvider,$urlRouterProvider) {
     templateUrl:'templates/request-accepted.html',
     controller:'DonationPassController'
   })
+  .state('userProfile',{
+    url:'/userProfile',
+    templateUrl:'templates/user-profile.html'
+  })
   // .state('app', {
   //   url: '/app',
   //   abstract: true,
