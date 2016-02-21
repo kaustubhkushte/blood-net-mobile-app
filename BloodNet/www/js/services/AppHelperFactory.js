@@ -146,6 +146,17 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
   {
     $ionicNavBarDelegate.back();
   }
+
+  var _getServerDateFormat = function(dateObj)
+  {
+    var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    var date = ("0" + dateObj.getDate()).slice(-2);
+    var year = dateObj.getFullYear();
+    var dateStr = year +'-'+month+'-'+date;
+    return dateStr;
+  }
+
+
   return {
     showError: showError,
     isOnline : isOnline,
@@ -164,6 +175,7 @@ function($rootScope, $cordovaNetwork,toastr,NetworkStatus,$log,$ionicHistory,$st
     getTimeStamp: _getTimeStamp,
     stringify:_stringify,
     copyToClipBoard:_copyToClipBoard,
-    goBack:_goBack
+    goBack:_goBack,
+    getServerDateFormat:_getServerDateFormat
   }
 }]);

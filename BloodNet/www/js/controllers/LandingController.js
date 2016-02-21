@@ -3,18 +3,27 @@ controllers.controller('LandingController',['$scope',
 'AppConstants',
 '$cordovaDatePicker',
 '$ionicModal',
-function($scope,helper,constants,datePicker,$ionicModal){
+'LandingFactory',
+function($scope,helper,constants,datePicker,$ionicModal,lf){
 
   helper.log('Landing Loaded');
 
   $scope.mobileNumberRegEx="/^[0-9]{10,10}$/;"
 
   $scope.register = {};
-  $scope.register.dob = '';
-  $scope.register.wholeBloodDate = '';
-  $scope.register.platelatesDate = '';
-  $scope.register.plasmaDate = '';
-  $scope.register.preferredLocationName = '';
+  $scope.register.fName = 'Kaustubh';
+  $scope.register.lName = 'Kushte';
+  $scope.register.email = 'kaustubh@techjini.com';
+  $scope.register.mobileNumber = 9945933899;
+  $scope.register.gender = 0;
+
+
+  $scope.register.dob = '1985-08-14';
+  $scope.register.bloodGroup = 2;
+  $scope.register.wholeBloodDate = '2012-09-09';
+  $scope.register.platelatesDate = '2012-09-09';
+  $scope.register.plasmaDate = '2012-09-09';
+  $scope.register.preferredLocationName = 'BTM';
   $scope.register.preferredLocationLat = 77.33;
   $scope.register.preferredLocationLong = 28.22;
   $scope.register.pushToken = '';
@@ -34,6 +43,7 @@ function($scope,helper,constants,datePicker,$ionicModal){
 {"title":"O+","value":7},
 {"title":"O-","value":8}
 ];
+
 
 
   $ionicModal.fromTemplateUrl('templates/preffered-location-search.html', {
@@ -64,7 +74,13 @@ function($scope,helper,constants,datePicker,$ionicModal){
 
   $scope.submitDetails = function()
   {
-    alert(helper.getValue(constants.notificationToken));
+    //Store Mobile Number for future use
+    helper.storeValue(constants.emailToken,$scope.register.email);
+    $scope.register.pushToken =  helper.getValue(constants.notificationToken);
+    lf.sendRegistrationDetails($scope.register).then(function(result){
+      alert(result);
+    });
+
   }
 
 
@@ -101,12 +117,7 @@ function($scope,helper,constants,datePicker,$ionicModal){
     };
     datePicker.show(datePickerOptions).then(function(date){
         if (date !== undefined) {
-          var month = date.getMonth();
-          var day = date.getDay();
-          var year = date.getFullYear();
-          var dateStr = year +'/'+day+'/'+month;
-
-          $scope.register.dob = dateStr;
+          $scope.register.dob = helper.getServerDateFormat(date);
         }
     });
   }
@@ -128,10 +139,7 @@ function($scope,helper,constants,datePicker,$ionicModal){
     };
     datePicker.show(datePickerOptions).then(function(date){
         if (date !== undefined) {
-          var month = date.getMonth();
-          var day = date.getDay();
-          var year = date.getFullYear();
-          var dateStr =dateStr;
+          var dateStr =helper.getServerDateFormat(date);;
           switch (dontationType) {
             case 0:
             {

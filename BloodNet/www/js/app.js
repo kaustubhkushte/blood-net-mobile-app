@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('bloodNet', ['ionic','ionic.service.core','app.controllers','ngAnimate', 'toastr']);
+var app = angular.module('bloodNet', ['ionic','ionic.service.core','app.controllers','app.services','ngAnimate', 'toastr']);
 
 app.run(function($ionicPlatform,$cordovaPush,$rootScope,AppHelperFactory,AppConstants) {
   var androidConfig = {

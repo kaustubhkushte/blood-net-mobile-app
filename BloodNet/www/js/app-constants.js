@@ -10,5 +10,9 @@ app.constant("AppConstants", {
         statusError : 'error',
         statusNoData : 'no-data',
         doNotShowLoaderScreen : false,
-        notificationToken : 'AndroidPushToken'        
+        notificationToken : 'AndroidPushToken',
+        emailToken:'email' ,
+        apiUrl:{
+          'users':'http://10.14.120.235:81/app_dev.php/api/v1/users/'
+        }
     });

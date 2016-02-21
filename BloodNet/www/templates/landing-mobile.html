@@ -32,8 +32,8 @@
         <div class="item">
           <span class="input-label">Gender</span>
           <ion-list>
-            <ion-radio ng-model="register.gender" ng-value="'0'">Male</ion-radio>
-            <ion-radio ng-model="register.gender" ng-value="'1'">Female</ion-radio>
+            <ion-radio ng-model="register.gender" ng-value="'0'" name="gender">Male</ion-radio>
+            <ion-radio ng-model="register.gender" ng-value="'1'" name="gender">Female</ion-radio>
           </ion-list>
         </div>
         <!--  Blood Group-->
@@ -85,7 +85,7 @@
           </button>
         </div>
       </div>
-      <pre>{{register | json}}</pre>
+      <!-- <pre>{{register | json}}</pre> -->
       <div class="text-center">
         <button class="button button-positive" ng-disabled="registrationForm.$invalid" ng-click="submitDetails()"> Submit</button>
       </div>
