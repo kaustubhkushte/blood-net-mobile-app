@@ -1,0 +1,51 @@
+<div class="modal">
+  <ion-header-bar class="bar-positive">
+      <h1 class="title">Blood Donation Request</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <div class="item item-select">
+          <div class="input-label">Donation Type</div>
+          <select ng-model="donateRequest.type">
+            <option value="">Select Donation Type</option>
+            <option value="0">Whole Blood</option>
+            <option value="1">Platelates</option>
+            <option value="2">Plasma</option>
+          </select>
+        </div>
+        <!--  Blood Group-->
+        <div class="item item-select" ng-if="donateRequest.type==0">
+          <span class="input-label">Blood Group</span>
+          <select ng-model="donateRequest.blood_group">
+            <option value="">Select Blood Group</option>
+            <option ng-repeat="bldGrp in bloodGroupList track by $index" value="{{bldGrp.value}}">
+              {{bldGrp.title}}
+            </option>
+          </select>
+        </div>
+        <!-- Number of donors -->
+        <div class="item item-input">
+          <div class="input-label"># of donors required</div>
+          <input type="number" class="text-right" ng-model="donateRequest.qty" placeholder="Enter Number of donors required" />
+        </div>
+        <!-- Patient of name -->
+        <div class="item item-input">
+          <div class="input-label">Patient Name</div>
+          <input type="text" class="text-right" ng-model="donateRequest.patient_name" placeholder="Enter patient name (optional)" />
+        </div>
+        <!--  Blood Group-->
+        <div class="item item-select">
+          <span class="input-label">When ?</span>
+          <select ng-model="donateRequest.within_hours">
+            <option value="2">Next 2 Hours</option>
+            <option value="5">Next 4 Hours</option>
+            <option value="10">Next 10 Hours</option>
+          </select>
+        </div>
+
+        <div class="text-center padding"><button ng-click="sendRequest()" class="button button-positive">Send Request</button></div>
+        <pre>{{donateRequest | json}}</pre>
+
+      </div>
+    </ion-content>
+  </div>

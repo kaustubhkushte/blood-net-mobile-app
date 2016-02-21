@@ -36,10 +36,59 @@ function($scope,helper,constants,datePicker,$ionicModal,lf){
   $scope.register.pushToken = '';
 
   //TODO : Move blood list to a data folder
-  $scope.locations = [
-      {"title":"BTM","lat":12,"long":232},
-      {"title":"JP Nagar","lat":12,"long":232}
-  ];
+  $scope.locations = [{
+"title": "JP Nagar",
+"lat": 12.9063366,
+"long": 77.5896013
+}, {
+"title": "Marathahalli",
+"lat": 12.9568844,
+"long": 77.6984453
+}, {
+"title": "MG Road",
+"lat": 12.9756912,
+"long": 77.6036633
+}, {
+"title": "Vijayanagar",
+"lat": 12.9732514,
+"long": 77.5360868
+}, {
+"title": "Malleswaram",
+"lat": 13.0087766,
+"long": 77.5667342
+}, {
+"title": "Indiranagar",
+"lat": 12.9782911,
+"long": 77.636568
+}, {
+"title": "Hebbal",
+"lat": 13.0384147,
+"long": 77.587502
+}, {
+"title": "Jalahalli Cross",
+"lat": 13.03998,
+"long": 77.5161597
+}, {
+"title": "Banashankari",
+"lat": 12.9347572,
+"long": 77.5349759
+}, {
+"title": "Yeshwanthpur",
+"lat": 13.0281607,
+"long": 77.5379092
+}, {
+"title": "Jayadeva Hospital",
+"lat": 12.9193486,
+"long": 77.5979707
+}, {
+"title": "Silk Board",
+"lat": 12.9176559,
+"long": 77.6211578
+}, {
+"title": "Whitefield",
+"lat": 12.9964535,
+"long": 77.7592243
+}];
   $scope.bloodGroupList = [
 {"title":"AB+","value":1},
 {"title":"AB-","value":2},

@@ -12,5 +12,8 @@ app.constant("AppConstants", {
         doNotShowLoaderScreen : false,
         notificationToken : 'AndroidPushToken',
         msgTitle : 'title',
-        msgMessage : 'message'
+        msgMessage : 'message',
+        apiUrl:{
+          hospital : 'http://10.14.120.235:81/app_dev.php/api/v1/hospitals/requests'
+        }
     });
