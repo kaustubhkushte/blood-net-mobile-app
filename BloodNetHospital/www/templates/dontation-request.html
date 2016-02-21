@@ -24,7 +24,7 @@
           </select>
         </div>
         <!-- Number of donors -->
-        <div class="item item-input">
+        <div class="item item-input item-floating-label">
           <div class="input-label"># of donors required</div>
           <input type="number" class="text-right" ng-model="donateRequest.qty" placeholder="Enter Number of donors required" />
         </div>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="text-center padding"><button ng-click="sendRequest()" class="button button-positive">Send Request</button></div>
-        <pre>{{donateRequest | json}}</pre>
+        <!-- <pre>{{donateRequest | json}}</pre> -->
 
       </div>
     </ion-content>
