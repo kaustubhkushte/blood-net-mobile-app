@@ -4,7 +4,8 @@ controllers.controller('LandingController',['$scope',
 '$cordovaDatePicker',
 '$ionicModal',
 'LandingFactory',
-function($scope,helper,constants,datePicker,$ionicModal,lf){
+                                            '$cordovaSocialSharing',
+function($scope,helper,constants,datePicker,$ionicModal,lf,$cordovaSocialSharing){
 
   $scope.$on('$ionicView.beforeEnter', function(){
     if (helper.getValue(constants.isUserRegistered)==='yes') {
@@ -16,7 +17,9 @@ function($scope,helper,constants,datePicker,$ionicModal,lf){
   helper.log('Landing Loaded');
 
   $scope.mobileNumberRegEx="/^[0-9]{10,10}$/;"
-
+$scope.share = function () {
+    $cordovaSocialSharing.share('This is my message', 'Subject string', null, 'http://www.mylink.com');
+}
   $scope.register = {};
   $scope.register.fName = 'Kaustubh';
   $scope.register.lName = 'Kushte';
