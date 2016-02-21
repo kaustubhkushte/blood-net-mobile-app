@@ -1,0 +1,26 @@
+<div class="modal">
+  <ion-header-bar class="bar-positive">
+      <h1 class="title">Blood Donation Feedback</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="text-wrap text-center"><h4>Did donor donated blood ?</h4></div>
+      <form name="FeedbackForm" novalidate>
+      <ion-list>
+        <ion-radio ng-model="feedback.didDonate" ng-value="'Y'" name="didDonate" required>YES</ion-radio>
+        <ion-radio ng-model="feedback.didDonate" ng-value="'N'" name="didDonate" required>NO</ion-radio>
+      </ion-list>
+
+      <div ng-if="feedback.didDonate=='N'">
+        <div class="text-wrap text-center"><h4>Can he/she donate blood in future? </h4></div>
+        <ion-list>
+          <ion-radio ng-model="feedback.canDonate" ng-value="'Y'" name="canDonate" ng-required="feedback.didDonate=='N'">YES</ion-radio>
+          <ion-radio ng-model="feedback.canDonate" ng-value="'N'" name="canDonate" ng-required="feedback.didDonate=='N'">NO</ion-radio>
+        </ion-list>
+      </div>
+      </form>
+      <!-- <pre>{{feedback | json}}</pre> -->
+      <div class="text-wrap text-center">
+        <button ng-disabled="FeedbackForm.$invalid" class="button button-positive" ng-click="sendFeedBack()">Done</button>
+      </div>
+    </ion-content>
+  </div>
