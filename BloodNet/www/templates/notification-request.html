@@ -1,12 +1,6 @@
 <ion-view view-title="Blood Net Landing">
-  <ion-nav-title>
-    <img src="img/header-logo.png" class="header-logo" />
-    <button class="button icon ion-android-share-alt" ng-click="share()"></button>
+  <ion-nav-title app-header>
   </ion-nav-title>
-  <!-- <div class="bar bar-header">
-    <img src="img/header-logo.png" class="header-logo" />
-    <button class="button icon ion-android-share-alt" ng-click="share()"></button>
-  </div> -->
   <ion-content>
     <div class="card">
   <div class="item item-divider">
@@ -28,10 +22,13 @@
         ACCEPT
       </button>
     </div>
-    <div class="col text-right">
+    <div class="col">
       <button class="button button-assertive" ng-click="canelRequest()">
         CANCEL
       </button>
+    </div>
+    <div class="col">
+      <button class="button ion-android-share-alt button-royal" ng-click="share()">Share</button>      
     </div>
   </div>
   </ionic-content>
